@@ -28,10 +28,15 @@ let make = () => {
   let url = RescriptReactRouter.useUrl();
   let component =
     switch (url.path) {
-    | [] =>  <SuspensionLoader> lazyHome </SuspensionLoader>
+    | [] => <SuspensionLoader> lazyHome </SuspensionLoader>
     | ["about"] => <SuspensionLoader> lazyAbout </SuspensionLoader>
-    | _ => <div />
+    | _ => <NotFound/>
     };
 
-  <div className="flex flex-col"> component </div>;
+  let (theme, setTheme) = ThemeHook.useTheme("theme-blue");
+  <ThemeSwitchProvider value={setTheme}>
+    <div className={j|$theme flex flex-col h-[100vh] dark:bg-slate-700 |j}> <NavBar/> 
+
+    <div className="flex w-full h-full m-auto dark:bg-slate-700">component</div> </div>
+  </ThemeSwitchProvider>;
 };

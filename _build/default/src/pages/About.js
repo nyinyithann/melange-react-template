@@ -21,7 +21,7 @@ var AuthorLink = {
 
 function About(Props) {
   return React.createElement("div", {
-              className: "flex flex-col gap-2 text-600 font-sans text-center h-full items-center justify-center dark:text-slate-100"
+              className: "flex flex-col gap-2 text-600 font-sans text-center w-full h-full items-center justify-center dark:text-white dark:bg-slate-700"
             }, React.createElement("div", {
                   className: "flex flex-col"
                 }, React.createElement("h1", {
@@ -30,7 +30,7 @@ function About(Props) {
                       className: "pt-4"
                     }, React.createElement("a", {
                           className: "text-800 underline text-base md:text:xl text-center inline",
-                          href: "https://github.com/nyinyithann/rescript-react-webpack-tailwind-template",
+                          href: "https://github.com/nyinyithann/melange-react-template",
                           rel: "noreferrer",
                           target: "_blank"
                         }, "GitHub Repo")), React.createElement("div", {

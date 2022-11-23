@@ -1,1 +1,1 @@
-(bindings/ReactBinding.cmi bindings/ReactBinding.cmj components/SuspensionLoader.cmi components/SuspensionLoader.cmj)
+(pages/NotFound.cmi pages/NotFound.cmj hooks/ThemeHook.cmi hooks/ThemeHook.cmj components/NavBar.cmi components/NavBar.cmj bindings/ReactBinding.cmi bindings/ReactBinding.cmj components/SuspensionLoader.cmi components/SuspensionLoader.cmj providers/ThemeSwitchProvider.cmi providers/ThemeSwitchProvider.cmj)

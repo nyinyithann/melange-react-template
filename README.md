@@ -1,18 +1,16 @@
-# ReScript React Template with Webpack and TailwindCSS 
+# Melange React Template 
 
-Opinionated Boilerplate for ReScript-React with Webpack and TailwindCSS
+Opinionated Boilerplate of [Melange](https://github.com/melange-re/melange) + React + TailwindCSS + Webpack
 
-This template is based on
-- React 17
-- RescriptReact 0.10.3 (V3)
-
-[DEMO](https://rescript-react-webpack-tailwind-template.vercel.app/)
+[DEMO](https://melange-template.vercel.app/)
 
 ### Installation
 
-- `git clone https://github.com/nyinyithann/rescript-react-webpack-tailwind-template.git`
-- `cd rescript-react-webpack-tailwind-template`
+- `git clone https://github.com/nyinyithann/melange-template.git`
+- `cd melange-template`
+- `esy install`
 - `yarn install`
+- `yarn watch:mel`
 - `yarn start`
 - visit `http://0.0.0.0:8080`
 

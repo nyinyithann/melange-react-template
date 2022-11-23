@@ -18,7 +18,7 @@ module AuthorLink = {
 [@react.component]
 let make = () => {
   <div
-    className="flex flex-col gap-2 text-600 font-sans text-center h-full items-center justify-center dark:text-slate-100">
+    className="flex flex-col gap-2 text-600 font-sans text-center w-full h-full items-center justify-center dark:text-white dark:bg-slate-700">
     <div className="flex flex-col">
       <h1 className="text-base md:text-2xl font-bold pt-4">
         "Melange React Template"->React.string
@@ -28,7 +28,7 @@ let make = () => {
           target="_blank"
           rel="noreferrer"
           className="text-800 underline text-base md:text:xl text-center inline"
-          href="https://github.com/nyinyithann/rescript-react-webpack-tailwind-template">
+          href="https://github.com/nyinyithann/melange-react-template">
           "GitHub Repo"->React.string
         </a>
       </div>

@@ -340,7 +340,7 @@
 )
 
 (subdir src
-(dirs :standard components bindings pages)
+(dirs :standard providers components hooks bindings pages)
 (rule
 (targets  App.re.pp.ml)
  (deps (:inputs  App.re) )
@@ -364,7 +364,7 @@
  (alias mel)
  (mode (promote (until-clean) (only App.js)))(deps (:inputs  App.ast)  (include App.d) ../bsconfig.json(alias ../node_modules/@rescript/react/src/mel)(alias ../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I components -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o App.cmj %{inputs}))
+  (run melc -I providers -I components -I hooks -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o App.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  (rule
 (targets  Index.re.pp.ml)
@@ -389,7 +389,7 @@
  (alias mel)
  (mode (promote (until-clean) (only Index.js)))(deps (:inputs  Index.ast)  (include Index.d) ../bsconfig.json(alias ../node_modules/@rescript/react/src/mel)(alias ../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I components -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o Index.cmj %{inputs}))
+  (run melc -I providers -I components -I hooks -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o Index.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  )
 (subdir src/pages
@@ -416,7 +416,7 @@
  (alias mel)
  (mode (promote (until-clean) (only Home.js)))(deps (:inputs  Home.ast)  (include Home.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I ../components -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o Home.cmj %{inputs}))
+  (run melc -I ../providers -I ../components -I ../hooks -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o Home.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  (rule
 (targets  About.re.pp.ml)
@@ -441,11 +441,61 @@
  (alias mel)
  (mode (promote (until-clean) (only About.js)))(deps (:inputs  About.ast)  (include About.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I ../components -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o About.cmj %{inputs}))
+  (run melc -I ../providers -I ../components -I ../hooks -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o About.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NotFound.re.pp.ml)
+ (deps (:inputs  NotFound.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NotFound.ast)
+ (deps (:inputs  NotFound.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NotFound.d)
+ (deps (:inputs  ../.././src/pages/NotFound.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NotFound.cmj NotFound.cmi NotFound.cmt NotFound.js)
+ (alias mel)
+ (mode (promote (until-clean) (only NotFound.js)))(deps (:inputs  NotFound.ast)  (include NotFound.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I ../components -I ../hooks -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o NotFound.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  )
 (subdir src/bindings
 (rule
+(targets  HeadlessUI.re.pp.ml)
+ (deps (:inputs  HeadlessUI.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  HeadlessUI.ast)
+ (deps (:inputs  HeadlessUI.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  HeadlessUI.d)
+ (deps (:inputs  ../.././src/bindings/HeadlessUI.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  HeadlessUI.cmj HeadlessUI.cmi HeadlessUI.cmt HeadlessUI.js)
+ (alias mel)
+ (mode (promote (until-clean) (only HeadlessUI.js)))(deps (:inputs  HeadlessUI.ast)  (include HeadlessUI.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I ../components -I ../hooks -I . -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/bindings:.js -o HeadlessUI.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
 (targets  ReactBinding.re.pp.ml)
  (deps (:inputs  ReactBinding.re) )
 (action
@@ -468,11 +518,88 @@
  (alias mel)
  (mode (promote (until-clean) (only ReactBinding.js)))(deps (:inputs  ReactBinding.ast)  (include ReactBinding.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I ../components -I . -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/bindings:.js -o ReactBinding.cmj %{inputs}))
+  (run melc -I ../providers -I ../components -I ../hooks -I . -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/bindings:.js -o ReactBinding.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/hooks
+(rule
+(targets  ThemeHook.res.pp.ml)
+ (deps (:inputs  ThemeHook.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeHook.ast)
+ (deps (:inputs  ThemeHook.res.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeHook.d)
+ (deps (:inputs  ../.././src/hooks/ThemeHook.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeHook.cmj ThemeHook.cmi ThemeHook.cmt ThemeHook.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ThemeHook.js)))(deps (:inputs  ThemeHook.ast)  (include ThemeHook.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I ../components -I . -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/hooks:.js -o ThemeHook.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  )
 (subdir src/components
 (rule
+(targets  Logo.re.pp.ml)
+ (deps (:inputs  Logo.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Logo.ast)
+ (deps (:inputs  Logo.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Logo.d)
+ (deps (:inputs  ../.././src/components/Logo.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Logo.cmj Logo.cmi Logo.cmt Logo.js)
+ (alias mel)
+ (mode (promote (until-clean) (only Logo.js)))(deps (:inputs  Logo.ast)  (include Logo.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o Logo.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavBar.re.pp.ml)
+ (deps (:inputs  NavBar.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavBar.ast)
+ (deps (:inputs  NavBar.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavBar.d)
+ (deps (:inputs  ../.././src/components/NavBar.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavBar.cmj NavBar.cmi NavBar.cmt NavBar.js)
+ (alias mel)
+ (mode (promote (until-clean) (only NavBar.js)))(deps (:inputs  NavBar.ast)  (include NavBar.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o NavBar.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
 (targets  Loading.re.pp.ml)
  (deps (:inputs  Loading.re) )
 (action
@@ -495,7 +622,57 @@
  (alias mel)
  (mode (promote (until-clean) (only Loading.js)))(deps (:inputs  Loading.ast)  (include Loading.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I . -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o Loading.cmj %{inputs}))
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o Loading.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavLink.re.pp.ml)
+ (deps (:inputs  NavLink.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavLink.ast)
+ (deps (:inputs  NavLink.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavLink.d)
+ (deps (:inputs  ../.././src/components/NavLink.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  NavLink.cmj NavLink.cmi NavLink.cmt NavLink.js)
+ (alias mel)
+ (mode (promote (until-clean) (only NavLink.js)))(deps (:inputs  NavLink.ast)  (include NavLink.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o NavLink.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeMenu.re.pp.ml)
+ (deps (:inputs  ThemeMenu.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeMenu.ast)
+ (deps (:inputs  ThemeMenu.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeMenu.d)
+ (deps (:inputs  ../.././src/components/ThemeMenu.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeMenu.cmj ThemeMenu.cmi ThemeMenu.cmt ThemeMenu.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ThemeMenu.js)))(deps (:inputs  ThemeMenu.ast)  (include ThemeMenu.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o ThemeMenu.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  (rule
 (targets  SuspensionLoader.re.pp.ml)
@@ -520,13 +697,40 @@
  (alias mel)
  (mode (promote (until-clean) (only SuspensionLoader.js)))(deps (:inputs  SuspensionLoader.ast)  (include SuspensionLoader.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
 (action
-  (run melc -I . -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o SuspensionLoader.cmj %{inputs}))
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o SuspensionLoader.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/providers
+(rule
+(targets  ThemeSwitchProvider.re.pp.ml)
+ (deps (:inputs  ThemeSwitchProvider.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeSwitchProvider.ast)
+ (deps (:inputs  ThemeSwitchProvider.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeSwitchProvider.d)
+ (deps (:inputs  ../.././src/providers/ThemeSwitchProvider.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ThemeSwitchProvider.cmj ThemeSwitchProvider.cmi ThemeSwitchProvider.cmt ThemeSwitchProvider.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ThemeSwitchProvider.js)))(deps (:inputs  ThemeSwitchProvider.ast)  (include ThemeSwitchProvider.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I . -I ../components -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/providers:.js -o ThemeSwitchProvider.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  )
 
 (subdir .melange.eobjs
-(rule (write-file .bsbuild NwpBcHAKSG9tZQpBYm91dApJbmRleApMb2FkaW5nClJlYWN0QmluZGluZwpTdXNwZW5zaW9uTG9hZGVyCi4vc3JjCS4vc3JjL3BhZ2VzCS4vc3JjL2NvbXBvbmVudHMJLi9zcmMvYmluZGluZ3MJCjEBAwMBBQcFCjAK))
-(rule (write-file .sourcedirs.json "{ \"dirs\" : [ \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src/legacy\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/pages\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/bindings\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/components\" ] , \"pkgs\" : [ [ \"@rescript/react\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react\" ] ] , \"generated\" : [] }")) 
+(rule (write-file .bsbuild MTUKQXBwCkhvbWUKTG9nbwpBYm91dApJbmRleApOYXZCYXIKTG9hZGluZwpOYXZMaW5rCk5vdEZvdW5kClRoZW1lSG9vawpUaGVtZU1lbnUKSGVhZGxlc3NVSQpSZWFjdEJpbmRpbmcKU3VzcGVuc2lvbkxvYWRlcgpUaGVtZVN3aXRjaFByb3ZpZGVyCi4vc3JjCS4vc3JjL3BhZ2VzCS4vc3JjL2NvbXBvbmVudHMJLi9zcmMvaG9va3MJLi9zcmMvYmluZGluZ3MJLi9zcmMvcHJvdmlkZXJzCQoxAQMFAwEFBQUDBwUJCQULCjAK))
+(rule (write-file .sourcedirs.json "{ \"dirs\" : [ \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src/legacy\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/pages\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/bindings\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/hooks\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/components\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/providers\" ] , \"pkgs\" : [ [ \"@rescript/react\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react\" ] ] , \"generated\" : [] }")) 
 )
 
 (data_only_dirs node_modules  .melange.eobjs)
@@ -538,27 +742,47 @@
 (run mkdir -p src)
 (run cp %{sources-0} src) (system "rm -f src/*.{ast,cm*,d}")
  (run rm -f src/App.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/App.cmj -o src/App.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/App.cmj -o src/App.js)
  (run rm -f src/Index.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/Index.cmj -o src/Index.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/Index.cmj -o src/Index.js)
 (run mkdir -p src/pages)
 (run cp %{sources-1} src/pages) (system "rm -f src/pages/*.{ast,cm*,d}")
  (run rm -f src/pages/Home.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/Home.cmj -o src/pages/Home.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/Home.cmj -o src/pages/Home.js)
  (run rm -f src/pages/About.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/About.cmj -o src/pages/About.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/About.cmj -o src/pages/About.js)
+ (run rm -f src/pages/NotFound.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/NotFound.cmj -o src/pages/NotFound.js)
 (run mkdir -p src/bindings)
 (run cp %{sources-2} src/bindings) (system "rm -f src/bindings/*.{ast,cm*,d}")
+ (run rm -f src/bindings/HeadlessUI.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/bindings/HeadlessUI.cmj -o src/bindings/HeadlessUI.js)
  (run rm -f src/bindings/ReactBinding.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/bindings/ReactBinding.cmj -o src/bindings/ReactBinding.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/bindings/ReactBinding.cmj -o src/bindings/ReactBinding.js)
+(run mkdir -p src/hooks)
+(run cp %{sources-3} src/hooks) (system "rm -f src/hooks/*.{ast,cm*,d}")
+ (run rm -f src/hooks/ThemeHook.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/hooks/ThemeHook.cmj -o src/hooks/ThemeHook.js)
 (run mkdir -p src/components)
-(run cp %{sources-3} src/components) (system "rm -f src/components/*.{ast,cm*,d}")
+(run cp %{sources-4} src/components) (system "rm -f src/components/*.{ast,cm*,d}")
+ (run rm -f src/components/Logo.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/Logo.cmj -o src/components/Logo.js)
+ (run rm -f src/components/NavBar.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/NavBar.cmj -o src/components/NavBar.js)
  (run rm -f src/components/Loading.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/Loading.cmj -o src/components/Loading.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/Loading.cmj -o src/components/Loading.js)
+ (run rm -f src/components/NavLink.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/NavLink.cmj -o src/components/NavLink.js)
+ (run rm -f src/components/ThemeMenu.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/ThemeMenu.cmj -o src/components/ThemeMenu.js)
  (run rm -f src/components/SuspensionLoader.js)
- (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/SuspensionLoader.cmj -o src/components/SuspensionLoader.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/SuspensionLoader.cmj -o src/components/SuspensionLoader.js)
+(run mkdir -p src/providers)
+(run cp %{sources-5} src/providers) (system "rm -f src/providers/*.{ast,cm*,d}")
+ (run rm -f src/providers/ThemeSwitchProvider.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/providers/ThemeSwitchProvider.cmj -o src/providers/ThemeSwitchProvider.js)
 (run mkdir -p node_modules/@rescript/react/src)
-(run cp %{sources-4} node_modules/@rescript/react/src) (system "rm -f node_modules/@rescript/react/src/*.{ast,cm*,d}")
+(run cp %{sources-6} node_modules/@rescript/react/src) (system "rm -f node_modules/@rescript/react/src/*.{ast,cm*,d}")
  (run rm -f node_modules/@rescript/react/src/React.js)
  (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/React.cmj -o node_modules/@rescript/react/src/React.js)
  (run rm -f node_modules/@rescript/react/src/ReactDOM.js)
@@ -576,7 +800,7 @@
  (run rm -f node_modules/@rescript/react/src/RescriptReactErrorBoundary.js)
  (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/RescriptReactErrorBoundary.cmj -o node_modules/@rescript/react/src/RescriptReactErrorBoundary.js)
 (run mkdir -p node_modules/@rescript/react/src/legacy)
-(run cp %{sources-5} node_modules/@rescript/react/src/legacy) (system "rm -f node_modules/@rescript/react/src/legacy/*.{ast,cm*,d}")
+(run cp %{sources-7} node_modules/@rescript/react/src/legacy) (system "rm -f node_modules/@rescript/react/src/legacy/*.{ast,cm*,d}")
  (run rm -f node_modules/@rescript/react/src/legacy/ReactDOMRe.js)
  (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/legacy/ReactDOMRe.cmj -o node_modules/@rescript/react/src/legacy/ReactDOMRe.js)
  (run rm -f node_modules/@rescript/react/src/legacy/ReasonReact.js)
@@ -584,6 +808,8 @@
 (run cp -f ../bsconfig.json .) ))) (deps (:sources-0 (glob_files src/*))
 (:sources-1 (glob_files src/pages/*))
 (:sources-2 (glob_files src/bindings/*))
-(:sources-3 (glob_files src/components/*))
-(:sources-4 (glob_files node_modules/@rescript/react/src/*))
-(:sources-5 (glob_files node_modules/@rescript/react/src/legacy/*))))
+(:sources-3 (glob_files src/hooks/*))
+(:sources-4 (glob_files src/components/*))
+(:sources-5 (glob_files src/providers/*))
+(:sources-6 (glob_files node_modules/@rescript/react/src/*))
+(:sources-7 (glob_files node_modules/@rescript/react/src/legacy/*))))
