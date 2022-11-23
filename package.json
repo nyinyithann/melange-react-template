@@ -78,7 +78,9 @@
         "clean:mel": "esy mel clean",
 
         
-        "bundle:prod": "TAILWIND_MODE=build NODE_ENV=production esy mel clean && esy && esy mel build && webpack --config build/webpack.js --env env=prod",
+        "bundle:prod": "TAILWIND_MODE=build NODE_ENV=production webpack --config build/webpack.js --env env=prod",
+        
+        "bundle:locl": "TAILWIND_MODE=build NODE_ENV=production esy mel clean && esy && esy mel build && webpack --config build/webpack.js --env env=prod",
         "bundle:dev": "TAILWIND_MODE=build NODE_ENV=development esy mel clean && esy && esy mel build && webpack --config build/webpack.js --env env=dev",
         "start:all": "concurrently --raw \"esy mel build -w\" \"TAILWIND_MODE=watch NODE_ENV=development webpack serve --config build/webpack.js --env env=dev\" ",
         "start": "TAILWIND_MODE=watch NODE_ENV=development webpack serve --config build/webpack.js --env env=dev"
