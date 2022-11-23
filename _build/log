@@ -1,0 +1,251 @@
+# dune build @mel
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /Users/jazz/ghq/github.com/nyinyithann/melange-template
+# Auto-detected concurrency: 8
+$ /Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlc.opt -config > /var/folders/r8/tpdqr4qd35n7xxzzhyw1z15m0000gn/T/dune_74acdf_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some
+#        External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib/ocaml"
+#  ; ocaml_bin =
+#      External
+#        "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin"
+#  ; ocaml =
+#      Ok
+#        External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocaml"
+#  ; ocamlc =
+#      External
+#        "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlc.opt"
+#  ; ocamlopt =
+#      Ok
+#        External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlopt.opt"
+#  ; ocamldep =
+#      Ok
+#        External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamldep.opt"
+#  ; ocamlmklib =
+#      Ok
+#        External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" : "/Users/jazz/.opam/4.14.0/lib"
+#        ; "DUNE_OCAML_STDLIB" :
+#            "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "/Users/jazz/ghq/github.com/nyinyithann/melange-template"
+#        ; "INSIDE_DUNE" :
+#            "/Users/jazz/ghq/github.com/nyinyithann/melange-template/_build/default"
+#        ; "MANPATH" :
+#            "/Users/jazz/ghq/github.com/nyinyithann/melange-template/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/Users/jazz/ghq/github.com/nyinyithann/melange-template/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/Users/jazz/ghq/github.com/nyinyithann/melange-template/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_paths =
+#      [ External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__dot_merlin_reader-opam__c__4.6-09c8ff4d/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__dune-opam__c__3.6.0-fe411da1/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__mel-opam__c__0.3.1-8ea588da/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocaml_lsp_server-opam__c__1.14.2-993ceacd/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__reason-opam__c__3.8.2-af2a1c04/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/esy_ocaml__s__substs-0.0.1-dcea4195/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__merlin_lib-opam__c__4.6-414-9bd9b75a/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocamlfind-opam__c__1.9.5-fb0cc592/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__base_threads-opam__c__base-beddf47d/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__base_unix-opam__c__base-b5812a5c/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__cmdliner-opam__c__1.1.1-7136d5ec/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__luv-opam__c__0.5.11-2e3282f1/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocaml_migrate_parsetree-opam__c__2.4.0-43f0e46e/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__cppo-opam__c__1.6.9-3ca1fab2/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange_compiler_libs-opam__c__0.0.1-414-4c45af81/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__meldep-opam__c__0.3.1-1b73b1ae/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__chrome_trace-opam__c__3.6.0-9a0da753/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__csexp-opam__c__1.5.1-f2a67280/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__dune_build_info-opam__c__3.6.0-fd322477/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__dune_rpc-opam__c__3.6.0-a595fb3d/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__dyn-opam__c__3.6.0-9fa6a7f5/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__fiber-opam__c__3.6.0-f91c9b2c/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocamlc_loc-opam__c__3.6.0-0afbbc31/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocamlformat_rpc_lib-opam__c__0.24.1-ac881fb7/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__octavius-opam__c__1.2.2-1f0cf3c2/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__omd-opam__c__1.3.2-648a65b5/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ordering-opam__c__3.6.0-04ee2d48/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__pp-opam__c__1.1.2-4061410a/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ppx__yojson__conv__lib-opam__c__v0.15.0-f6d14b44/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__re-opam__c__1.10.4-597a5bdb/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__spawn-opam__c__v0.15.1-2c0df273/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__stdune-opam__c__3.6.0-b3175172/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__uutf-opam__c__1.0.3-1c7c4d8d/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__xdg-opam__c__3.6.0-f7bf709c/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__yojson-opam__c__2.0.2-5282104f/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__fix-opam__c__20220121-010bd7c1/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__menhir-opam__c__20220210-e7d59454/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__merlin_extend-opam__c__0.6.1-0657c70a/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ppx__derivers-opam__c__1.2.1-14bfc3eb/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__result-opam__c__1.5-1dddf900/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ctypes-opam__c__0.20.1-7646e3d3/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__base64-opam__c__3.5.0-64795191/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__base_bigarray-opam__c__base-7c480a31/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__base_bytes-opam__c__base-eedeb8b3/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__seq-opam__c__base-0ffd590e/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__ocamlbuild-opam__c__0.14.2-e6873630/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__topkg-opam__c__1.0.6-73fcc009/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__menhirlib-opam__c__20220210-99d836da/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__menhirsdk-opam__c__20220210-8bc7a7b6/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__bigarray_compat-opam__c__1.1.0-121b2040/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__integers-opam__c__0.7.0-90fe929f/lib"
+#      ; External
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-ed0f3af7/lib"
+#      ; External
+#          "/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/esy/3/i/esy-cca3445f/lib"
+#      ; External "/Users/jazz/.opam/4.14.0/lib"
+#      ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.14.0"
+#      ; standard_library_default =
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib/ocaml"
+#      ; standard_library =
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "gcc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lm" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-arch"; "x86_64"; "-o" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "gcc"; "-c"; "-Wno-trigraphs" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-apple-darwin19.6.0"
+#      ; target = "x86_64-apple-darwin19.6.0"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X031"
+#      ; cmi_magic_number = "Caml1999I031"
+#      ; cmo_magic_number = "Caml1999O031"
+#      ; cma_magic_number = "Caml1999A031"
+#      ; cmx_magic_number = "Caml1999Y031"
+#      ; cmxa_magic_number = "Caml1999Z031"
+#      ; ast_impl_magic_number = "Caml1999M031"
+#      ; ast_intf_magic_number = "Caml1999N031"
+#      ; cmxs_magic_number = "Caml1999D031"
+#      ; cmt_magic_number = "Caml1999T031"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default/src/pages && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__reason-opam__c__3.8.2-af2a1c04/bin/refmt --print=binary Home.re) > _build/default/src/pages/Home.re.pp.ml
+$ (cd _build/default/src/pages && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -warn-error a -bs-jsx 3 -absname -bs-ast -o Home.ast Home.re.pp.ml)
+$ (cd _build/default/src/pages && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__meldep-opam__c__0.3.1-1b73b1ae/bin/meldep -root-dir ../.. -p melange-react-template -proj-dir ../.. Home.ast)
+$ (cd _build/default/src/pages && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -I ../components -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o Home.cmj Home.ast)
+# Promoting "_build/default/src/pages/Home.js" to "src/pages/Home.js"

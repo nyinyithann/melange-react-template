@@ -1,0 +1,589 @@
+
+(subdir node_modules/@rescript/react/src
+(dirs :standard legacy)
+(rule
+(targets  React.res.pp.ml)
+ (deps (:inputs  React.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  React.ast)
+ (deps (:inputs  React.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  React.d)
+ (deps (:inputs  .././src/React.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  React.cmj React.cmi React.cmt React.js)
+ (alias mel)
+ (mode (promote (until-clean) (only React.js)))(deps (:inputs  React.ast)  (include React.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o React.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.res.pp.ml)
+ (deps (:inputs  ReactDOM.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.ast)
+ (deps (:inputs  ReactDOM.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.d)
+ (deps (:inputs  .././src/ReactDOM.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.cmj ReactDOM.cmi ReactDOM.cmt ReactDOM.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOM.js)))(deps (:inputs  ReactDOM.ast)  (include ReactDOM.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o ReactDOM.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.res.pp.ml)
+ (deps (:inputs  ReactEvent.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.ast)
+ (deps (:inputs  ReactEvent.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.d)
+ (deps (:inputs  .././src/ReactEvent.ast .././src/ReactEvent.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.resi.pp.mli)
+ (deps (:inputs  ReactEvent.resi) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.iast)
+ (deps (:inputs  ReactEvent.resi.pp.mli) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.cmi ReactEvent.cmti)
+ (alias mel)
+ (deps (:inputs  ReactEvent.iast)  (include ReactEvent.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o ReactEvent.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.cmj ReactEvent.cmt ReactEvent.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactEvent.js)))(deps (:inputs  ReactEvent.ast)  ReactEvent.cmi (include ReactEvent.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o ReactEvent.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.res.pp.ml)
+ (deps (:inputs  ReactDOMStyle.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.ast)
+ (deps (:inputs  ReactDOMStyle.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.d)
+ (deps (:inputs  .././src/ReactDOMStyle.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.cmj ReactDOMStyle.cmi ReactDOMStyle.cmt ReactDOMStyle.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMStyle.js)))(deps (:inputs  ReactDOMStyle.ast)  (include ReactDOMStyle.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o ReactDOMStyle.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.res.pp.ml)
+ (deps (:inputs  ReactDOMServer.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.ast)
+ (deps (:inputs  ReactDOMServer.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.d)
+ (deps (:inputs  .././src/ReactDOMServer.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.cmj ReactDOMServer.cmi ReactDOMServer.cmt ReactDOMServer.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMServer.js)))(deps (:inputs  ReactDOMServer.ast)  (include ReactDOMServer.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o ReactDOMServer.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.res.pp.ml)
+ (deps (:inputs  ReactTestUtils.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.ast)
+ (deps (:inputs  ReactTestUtils.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.d)
+ (deps (:inputs  .././src/ReactTestUtils.ast .././src/ReactTestUtils.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.resi.pp.mli)
+ (deps (:inputs  ReactTestUtils.resi) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.iast)
+ (deps (:inputs  ReactTestUtils.resi.pp.mli) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.cmi ReactTestUtils.cmti)
+ (alias mel)
+ (deps (:inputs  ReactTestUtils.iast)  (include ReactTestUtils.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o ReactTestUtils.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.cmj ReactTestUtils.cmt ReactTestUtils.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactTestUtils.js)))(deps (:inputs  ReactTestUtils.ast)  ReactTestUtils.cmi (include ReactTestUtils.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o ReactTestUtils.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.res.pp.ml)
+ (deps (:inputs  RescriptReactRouter.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.ast)
+ (deps (:inputs  RescriptReactRouter.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.d)
+ (deps (:inputs  .././src/RescriptReactRouter.ast .././src/RescriptReactRouter.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.resi.pp.mli)
+ (deps (:inputs  RescriptReactRouter.resi) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.iast)
+ (deps (:inputs  RescriptReactRouter.resi.pp.mli) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.cmi RescriptReactRouter.cmti)
+ (alias mel)
+ (deps (:inputs  RescriptReactRouter.iast)  (include RescriptReactRouter.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o RescriptReactRouter.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.cmj RescriptReactRouter.cmt RescriptReactRouter.js)
+ (alias mel)
+ (mode (promote (until-clean) (only RescriptReactRouter.js)))(deps (:inputs  RescriptReactRouter.ast)  RescriptReactRouter.cmi (include RescriptReactRouter.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o RescriptReactRouter.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.res.pp.ml)
+ (deps (:inputs  RescriptReactErrorBoundary.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.ast)
+ (deps (:inputs  RescriptReactErrorBoundary.res.pp.ml)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.d)
+ (deps (:inputs  .././src/RescriptReactErrorBoundary.ast .././src/RescriptReactErrorBoundary.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.resi.pp.mli)
+ (deps (:inputs  RescriptReactErrorBoundary.resi) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.iast)
+ (deps (:inputs  RescriptReactErrorBoundary.resi.pp.mli) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.cmi RescriptReactErrorBoundary.cmti)
+ (alias mel)
+ (deps (:inputs  RescriptReactErrorBoundary.iast)  (include RescriptReactErrorBoundary.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o RescriptReactErrorBoundary.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.cmj RescriptReactErrorBoundary.cmt RescriptReactErrorBoundary.js)
+ (alias mel)
+ (mode (promote (until-clean) (only RescriptReactErrorBoundary.js)))(deps (:inputs  RescriptReactErrorBoundary.ast)  RescriptReactErrorBoundary.cmi (include RescriptReactErrorBoundary.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.js -o RescriptReactErrorBoundary.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir node_modules/@rescript/react/src/legacy
+(rule
+(targets  ReactDOMRe.res.pp.ml)
+ (deps (:inputs  ReactDOMRe.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMRe.ast)
+ (deps (:inputs  ReactDOMRe.res.pp.ml)  ../../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMRe.d)
+ (deps (:inputs  ../.././src/legacy/ReactDOMRe.ast) )
+(action (run meldep  -root-dir ../../../../.. -p @rescript/react -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMRe.cmj ReactDOMRe.cmi ReactDOMRe.cmt ReactDOMRe.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMRe.js)))(deps (:inputs  ReactDOMRe.ast)  (include ReactDOMRe.d) ../../bsconfig.json)
+(action
+  (run melc -I . -I ..    -w a -bs-package-name @rescript/react -bs-package-output es6:./src/legacy:.js -o ReactDOMRe.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.res.pp.ml)
+ (deps (:inputs  ReasonReact.res) )
+(action
+  (with-stdout-to %{targets}
+   (run rescript_syntax -print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.ast)
+ (deps (:inputs  ReasonReact.res.pp.ml)  ../../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.d)
+ (deps (:inputs  ../.././src/legacy/ReasonReact.ast) )
+(action (run meldep  -root-dir ../../../../.. -p @rescript/react -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.cmj ReasonReact.cmi ReasonReact.cmt ReasonReact.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReasonReact.js)))(deps (:inputs  ReasonReact.ast)  (include ReasonReact.d) ../../bsconfig.json)
+(action
+  (run melc -I . -I ..    -w a -bs-package-name @rescript/react -bs-package-output es6:./src/legacy:.js -o ReasonReact.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+
+(subdir .melange.eobjs/node_modules/@rescript/react
+(rule (write-file .bsbuild MTAKUmVhY3QKUmVhY3RET00KUmVhY3RET01SZQpSZWFjdEV2ZW50ClJlYXNvblJlYWN0ClJlYWN0RE9NU3R5bGUKUmVhY3RET01TZXJ2ZXIKUmVhY3RUZXN0VXRpbHMKUmVzY3JpcHRSZWFjdFJvdXRlcgpSZXNjcmlwdFJlYWN0RXJyb3JCb3VuZGFyeQouL3NyYwkuL3NyYy9sZWdhY3kJCjEBAQMBAwEBAQEBCjAK))
+)
+
+(subdir src
+(dirs :standard components bindings pages)
+(rule
+(targets  App.re.pp.ml)
+ (deps (:inputs  App.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  App.ast)
+ (deps (:inputs  App.re.pp.ml)  ../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  App.d)
+ (deps (:inputs  .././src/App.ast) )
+(action (run meldep  -root-dir .. -p melange-react-template -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  App.cmj App.cmi App.cmt App.js)
+ (alias mel)
+ (mode (promote (until-clean) (only App.js)))(deps (:inputs  App.ast)  (include App.d) ../bsconfig.json(alias ../node_modules/@rescript/react/src/mel)(alias ../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I components -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o App.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Index.re.pp.ml)
+ (deps (:inputs  Index.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Index.ast)
+ (deps (:inputs  Index.re.pp.ml)  ../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Index.d)
+ (deps (:inputs  .././src/Index.ast) )
+(action (run meldep  -root-dir .. -p melange-react-template -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Index.cmj Index.cmi Index.cmt Index.js)
+ (alias mel)
+ (mode (promote (until-clean) (only Index.js)))(deps (:inputs  Index.ast)  (include Index.d) ../bsconfig.json(alias ../node_modules/@rescript/react/src/mel)(alias ../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I components -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o Index.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/pages
+(rule
+(targets  Home.re.pp.ml)
+ (deps (:inputs  Home.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Home.ast)
+ (deps (:inputs  Home.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Home.d)
+ (deps (:inputs  ../.././src/pages/Home.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Home.cmj Home.cmi Home.cmt Home.js)
+ (alias mel)
+ (mode (promote (until-clean) (only Home.js)))(deps (:inputs  Home.ast)  (include Home.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../components -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o Home.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  About.re.pp.ml)
+ (deps (:inputs  About.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  About.ast)
+ (deps (:inputs  About.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  About.d)
+ (deps (:inputs  ../.././src/pages/About.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  About.cmj About.cmi About.cmt About.js)
+ (alias mel)
+ (mode (promote (until-clean) (only About.js)))(deps (:inputs  About.ast)  (include About.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../components -I ../bindings -I . -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/pages:.js -o About.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/bindings
+(rule
+(targets  ReactBinding.re.pp.ml)
+ (deps (:inputs  ReactBinding.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactBinding.ast)
+ (deps (:inputs  ReactBinding.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactBinding.d)
+ (deps (:inputs  ../.././src/bindings/ReactBinding.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactBinding.cmj ReactBinding.cmi ReactBinding.cmt ReactBinding.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactBinding.js)))(deps (:inputs  ReactBinding.ast)  (include ReactBinding.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../components -I . -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/bindings:.js -o ReactBinding.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/components
+(rule
+(targets  Loading.re.pp.ml)
+ (deps (:inputs  Loading.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Loading.ast)
+ (deps (:inputs  Loading.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Loading.d)
+ (deps (:inputs  ../.././src/components/Loading.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  Loading.cmj Loading.cmi Loading.cmt Loading.js)
+ (alias mel)
+ (mode (promote (until-clean) (only Loading.js)))(deps (:inputs  Loading.ast)  (include Loading.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I . -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o Loading.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  SuspensionLoader.re.pp.ml)
+ (deps (:inputs  SuspensionLoader.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  SuspensionLoader.ast)
+ (deps (:inputs  SuspensionLoader.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  SuspensionLoader.d)
+ (deps (:inputs  ../.././src/components/SuspensionLoader.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  SuspensionLoader.cmj SuspensionLoader.cmi SuspensionLoader.cmt SuspensionLoader.js)
+ (alias mel)
+ (mode (promote (until-clean) (only SuspensionLoader.js)))(deps (:inputs  SuspensionLoader.ast)  (include SuspensionLoader.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I . -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o SuspensionLoader.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+
+(subdir .melange.eobjs
+(rule (write-file .bsbuild NwpBcHAKSG9tZQpBYm91dApJbmRleApMb2FkaW5nClJlYWN0QmluZGluZwpTdXNwZW5zaW9uTG9hZGVyCi4vc3JjCS4vc3JjL3BhZ2VzCS4vc3JjL2NvbXBvbmVudHMJLi9zcmMvYmluZGluZ3MJCjEBAwMBBQcFCjAK))
+(rule (write-file .sourcedirs.json "{ \"dirs\" : [ \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src/legacy\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/pages\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/bindings\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/components\" ] , \"pkgs\" : [ [ \"@rescript/react\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react\" ] ] , \"generated\" : [] }")) 
+)
+
+(data_only_dirs node_modules  .melange.eobjs)
+(alias (name mel) (deps .melange.eobjs/.sourcedirs.json (alias node_modules/@rescript/react/src/mel)(alias node_modules/@rescript/react/src/legacy/mel)))
+
+(rule (targets (dir melange.es6))
+ (alias UNSTABLE_mel)
+(action (chdir %{targets} (progn 
+(run mkdir -p src)
+(run cp %{sources-0} src) (system "rm -f src/*.{ast,cm*,d}")
+ (run rm -f src/App.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/App.cmj -o src/App.js)
+ (run rm -f src/Index.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/Index.cmj -o src/Index.js)
+(run mkdir -p src/pages)
+(run cp %{sources-1} src/pages) (system "rm -f src/pages/*.{ast,cm*,d}")
+ (run rm -f src/pages/Home.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/Home.cmj -o src/pages/Home.js)
+ (run rm -f src/pages/About.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/pages/About.cmj -o src/pages/About.js)
+(run mkdir -p src/bindings)
+(run cp %{sources-2} src/bindings) (system "rm -f src/bindings/*.{ast,cm*,d}")
+ (run rm -f src/bindings/ReactBinding.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/bindings/ReactBinding.cmj -o src/bindings/ReactBinding.js)
+(run mkdir -p src/components)
+(run cp %{sources-3} src/components) (system "rm -f src/components/*.{ast,cm*,d}")
+ (run rm -f src/components/Loading.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/Loading.cmj -o src/components/Loading.js)
+ (run rm -f src/components/SuspensionLoader.js)
+ (run melc -I ../src/components -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/SuspensionLoader.cmj -o src/components/SuspensionLoader.js)
+(run mkdir -p node_modules/@rescript/react/src)
+(run cp %{sources-4} node_modules/@rescript/react/src) (system "rm -f node_modules/@rescript/react/src/*.{ast,cm*,d}")
+ (run rm -f node_modules/@rescript/react/src/React.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/React.cmj -o node_modules/@rescript/react/src/React.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOM.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOM.cmj -o node_modules/@rescript/react/src/ReactDOM.js)
+ (run rm -f node_modules/@rescript/react/src/ReactEvent.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactEvent.cmj -o node_modules/@rescript/react/src/ReactEvent.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOMStyle.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOMStyle.cmj -o node_modules/@rescript/react/src/ReactDOMStyle.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOMServer.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOMServer.cmj -o node_modules/@rescript/react/src/ReactDOMServer.js)
+ (run rm -f node_modules/@rescript/react/src/ReactTestUtils.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactTestUtils.cmj -o node_modules/@rescript/react/src/ReactTestUtils.js)
+ (run rm -f node_modules/@rescript/react/src/RescriptReactRouter.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/RescriptReactRouter.cmj -o node_modules/@rescript/react/src/RescriptReactRouter.js)
+ (run rm -f node_modules/@rescript/react/src/RescriptReactErrorBoundary.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/RescriptReactErrorBoundary.cmj -o node_modules/@rescript/react/src/RescriptReactErrorBoundary.js)
+(run mkdir -p node_modules/@rescript/react/src/legacy)
+(run cp %{sources-5} node_modules/@rescript/react/src/legacy) (system "rm -f node_modules/@rescript/react/src/legacy/*.{ast,cm*,d}")
+ (run rm -f node_modules/@rescript/react/src/legacy/ReactDOMRe.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/legacy/ReactDOMRe.cmj -o node_modules/@rescript/react/src/legacy/ReactDOMRe.js)
+ (run rm -f node_modules/@rescript/react/src/legacy/ReasonReact.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/legacy/ReasonReact.cmj -o node_modules/@rescript/react/src/legacy/ReasonReact.js)
+(run cp -f ../bsconfig.json .) ))) (deps (:sources-0 (glob_files src/*))
+(:sources-1 (glob_files src/pages/*))
+(:sources-2 (glob_files src/bindings/*))
+(:sources-3 (glob_files src/components/*))
+(:sources-4 (glob_files node_modules/@rescript/react/src/*))
+(:sources-5 (glob_files node_modules/@rescript/react/src/legacy/*))))
