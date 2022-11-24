@@ -1,8 +1,8 @@
 # Melange React Template 
 
-Opinionated Boilerplate of [Melange](https://github.com/melange-re/melange) + React + TailwindCSS + Webpack
+Opinionated boilerplate of [Melange](https://github.com/melange-re/melange) + React + TailwindCSS + Webpack
 
-[DEMO](https://melange-template.vercel.app/)
+[DEMO](https://github.com/nyinyithann/melange-react-template)
 
 ### Installation
 
