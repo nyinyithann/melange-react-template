@@ -2,11 +2,11 @@
 
 Opinionated boilerplate of [Melange](https://github.com/melange-re/melange) + React + TailwindCSS + Webpack
 
-[DEMO](https://github.com/nyinyithann/melange-react-template)
+[DEMO](https://melange-react-template.vercel.app/)
 
 ### Installation
 
-- `git clone https://github.com/nyinyithann/melange-template.git`
+- `git clone https://github.com/nyinyithann/melange-react-template`
 - `cd melange-template`
 - `esy install`
 - `yarn install`
