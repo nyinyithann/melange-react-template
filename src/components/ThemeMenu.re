@@ -87,7 +87,7 @@ let make = () => {
     React.useCallback1(
       e => {
         open ReactEvent.Mouse;
-        let theme = target(e)##getAttribute(. "data-theme");
+        let theme = target(e)##getAttribute("data-theme");
         setTheme(theme);
       },
       [|setTheme|],
