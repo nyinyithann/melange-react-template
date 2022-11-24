@@ -43,7 +43,6 @@
         "prettier": "^2.7.1",
         "prettier-plugin-tailwindcss": "^0.1.13",
         "react-hot-loader": "^4.13.0",
-        "rescript": "^10.0.1",
         "sass": "^1.56.1",
         "sass-loader": "^13.2.0",
         "style-loader": "^3.3.1",
@@ -72,14 +71,10 @@
         "eslint": "npx eslint --config .eslintrc.json --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}'",
         "stylelint": "npx stylelint --config .stylelintrc.json --fix 'styles/*.css' 'src/*.css' 'src/**/*.css' ",
         "prettier": "npx prettier --write --config prettier.config.js 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}' --check",
-        
         "build:mel": "esy",
         "watch:mel": "esy && esy mel build -w",
         "clean:mel": "esy mel clean",
-
-        
         "bundle:prod": "TAILWIND_MODE=build NODE_ENV=production webpack --config build/webpack.js --env env=prod",
-        
         "bundle:locl": "TAILWIND_MODE=build NODE_ENV=production esy mel clean && esy && esy mel build && webpack --config build/webpack.js --env env=prod",
         "bundle:dev": "TAILWIND_MODE=build NODE_ENV=development esy mel clean && esy && esy mel build && webpack --config build/webpack.js --env env=dev",
         "start:all": "concurrently --raw \"esy mel build -w\" \"TAILWIND_MODE=watch NODE_ENV=development webpack serve --config build/webpack.js --env env=dev\" ",

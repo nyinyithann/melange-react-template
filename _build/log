@@ -3,7 +3,7 @@
 # Shared cache: disabled
 # Workspace root: /Users/jazz/ghq/github.com/nyinyithann/melange-template
 # Auto-detected concurrency: 8
-$ /Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlc.opt -config > /var/folders/r8/tpdqr4qd35n7xxzzhyw1z15m0000gn/T/dune_273b61_output
+$ /Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlc.opt -config > /tmp/dune_15a209_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -40,7 +40,8 @@ $ /Users/jazz/.esy/3____________________________________________________________
 #          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/bin/ocamlmklib.opt"
 #  ; env =
 #      map
-#        { "DUNE_OCAML_HARDCODED" : "/Users/jazz/.opam/4.14.0/lib"
+#        { "DUNE_OCAML_HARDCODED" :
+#            "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib"
 #        ; "DUNE_OCAML_STDLIB" :
 #            "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib/ocaml"
 #        ; "DUNE_SOURCEROOT" :
@@ -166,8 +167,7 @@ $ /Users/jazz/.esy/3____________________________________________________________
 #      ; External
 #          "/Users/jazz/.esy/3___________________________________________________________________/i/opam__s__stdlib_shims-opam__c__0.3.0-ed0f3af7/lib"
 #      ; External
-#          "/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/esy/3/i/esy-cca3445f/lib"
-#      ; External "/Users/jazz/.opam/4.14.0/lib"
+#          "/Users/jazz/.esy/3___________________________________________________________________/i/ocaml-4.14.0-942b87e4/lib"
 #      ]
 #  ; arch_sixtyfour = true
 #  ; natdynlink_supported = true
@@ -244,15 +244,27 @@ $ /Users/jazz/.esy/3____________________________________________________________
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__reason-opam__c__3.8.2-af2a1c04/bin/refmt --print=binary App.re) > _build/default/src/App.re.pp.ml
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__reason-opam__c__3.8.2-af2a1c04/bin/refmt --print=binary Index.re) > _build/default/src/Index.re.pp.ml
-$ (cd _build/default/src/components && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__reason-opam__c__3.8.2-af2a1c04/bin/refmt --print=binary SuspensionLoader.re) > _build/default/src/components/SuspensionLoader.re.pp.ml
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -warn-error a -bs-jsx 3 -absname -bs-ast -o App.ast App.re.pp.ml)
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -warn-error a -bs-jsx 3 -absname -bs-ast -o Index.ast Index.re.pp.ml)
-$ (cd _build/default/src/components && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -warn-error a -bs-jsx 3 -absname -bs-ast -o SuspensionLoader.ast SuspensionLoader.re.pp.ml)
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__meldep-opam__c__0.3.1-1b73b1ae/bin/meldep -root-dir .. -p melange-react-template -proj-dir .. App.ast)
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__meldep-opam__c__0.3.1-1b73b1ae/bin/meldep -root-dir .. -p melange-react-template -proj-dir .. Index.ast)
-$ (cd _build/default/src/components && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__meldep-opam__c__0.3.1-1b73b1ae/bin/meldep -root-dir ../.. -p melange-react-template -proj-dir ../.. SuspensionLoader.ast)
-$ (cd _build/default/src/components && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o SuspensionLoader.cmj SuspensionLoader.ast)
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -I providers -I components -I hooks -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o App.cmj App.ast)
-$ (cd _build/default/src && /Users/jazz/.esy/3___________________________________________________________________/i/opam__s__melange-opam__c__0.3.1-97bc0524/bin/melc -I providers -I components -I hooks -I bindings -I pages -I . -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src:.js -o Index.cmj Index.ast)
+# Promoting "_build/default/node_modules/@rescript/react/src/React.js" to
+# "node_modules/@rescript/react/src/React.js"
+# Promoting "_build/default/node_modules/@rescript/react/src/ReactDOMStyle.js"
+# to "node_modules/@rescript/react/src/ReactDOMStyle.js"
+# Promoting
+# "_build/default/node_modules/@rescript/react/src/legacy/ReasonReact.js" to
+# "node_modules/@rescript/react/src/legacy/ReasonReact.js"
+# Promoting "_build/default/node_modules/@rescript/react/src/ReactEvent.js" to
+# "node_modules/@rescript/react/src/ReactEvent.js"
+# Promoting "_build/default/node_modules/@rescript/react/src/ReactDOM.js" to
+# "node_modules/@rescript/react/src/ReactDOM.js"
+# Promoting "_build/default/node_modules/@rescript/react/src/ReactDOMServer.js"
+# to "node_modules/@rescript/react/src/ReactDOMServer.js"
+# Promoting "_build/default/node_modules/@rescript/react/src/ReactTestUtils.js"
+# to "node_modules/@rescript/react/src/ReactTestUtils.js"
+# Promoting
+# "_build/default/node_modules/@rescript/react/src/RescriptReactRouter.js" to
+# "node_modules/@rescript/react/src/RescriptReactRouter.js"
+# Promoting
+# "_build/default/node_modules/@rescript/react/src/RescriptReactErrorBoundary.js"
+# to "node_modules/@rescript/react/src/RescriptReactErrorBoundary.js"
+# Promoting
+# "_build/default/node_modules/@rescript/react/src/legacy/ReactDOMRe.js" to
+# "node_modules/@rescript/react/src/legacy/ReactDOMRe.js"
