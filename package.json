@@ -1,6 +1,6 @@
 {
-    "name": "rescript-react-template",
-    "description": "ReScript React Webpack template with tailwindcss",
+    "name": "melange react template",
+    "description": "melange react template",
     "version": "0.0.1",
     "main": "index.js",
     "license": "MIT",
