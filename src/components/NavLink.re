@@ -10,8 +10,6 @@ let make = (~to_, ~children) => {
       Js.String.replaceByRe(re, "", path);
     };
 
-  Js.log(path);
-
   let baseStyle = "focus:outline-none h-8 rounded-sm hover:bg-400/60 dark:hover:bg-slate-500 px-3 text-900";
   let className =
     path == to_ ? {j| $baseStyle bg-400/60 dark:bg-slate-500 |j} : baseStyle;

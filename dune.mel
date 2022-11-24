@@ -675,6 +675,31 @@
   (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o ThemeMenu.cmj %{inputs}))
 (enabled_if %{bin-available:melc}) )
  (rule
+(targets  ErrorBoundary.re.pp.ml)
+ (deps (:inputs  ErrorBoundary.re) )
+(action
+  (with-stdout-to %{targets}
+   (run refmt --print=binary %{inputs})))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ErrorBoundary.ast)
+ (deps (:inputs  ErrorBoundary.re.pp.ml)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc  -warn-error a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ErrorBoundary.d)
+ (deps (:inputs  ../.././src/components/ErrorBoundary.ast) )
+(action (run meldep  -root-dir ../.. -p melange-react-template -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ErrorBoundary.cmj ErrorBoundary.cmi ErrorBoundary.cmt ErrorBoundary.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ErrorBoundary.js)))(deps (:inputs  ErrorBoundary.ast)  (include ErrorBoundary.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel))
+(action
+  (run melc -I ../providers -I . -I ../hooks -I ../bindings -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy   -warn-error a -bs-package-name melange-react-template -bs-package-output es6:./src/components:.js -o ErrorBoundary.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
 (targets  SuspensionLoader.re.pp.ml)
  (deps (:inputs  SuspensionLoader.re) )
 (action
@@ -729,7 +754,7 @@
  )
 
 (subdir .melange.eobjs
-(rule (write-file .bsbuild MTUKQXBwCkhvbWUKTG9nbwpBYm91dApJbmRleApOYXZCYXIKTG9hZGluZwpOYXZMaW5rCk5vdEZvdW5kClRoZW1lSG9vawpUaGVtZU1lbnUKSGVhZGxlc3NVSQpSZWFjdEJpbmRpbmcKU3VzcGVuc2lvbkxvYWRlcgpUaGVtZVN3aXRjaFByb3ZpZGVyCi4vc3JjCS4vc3JjL3BhZ2VzCS4vc3JjL2NvbXBvbmVudHMJLi9zcmMvaG9va3MJLi9zcmMvYmluZGluZ3MJLi9zcmMvcHJvdmlkZXJzCQoxAQMFAwEFBQUDBwUJCQULCjAK))
+(rule (write-file .bsbuild MTYKQXBwCkhvbWUKTG9nbwpBYm91dApJbmRleApOYXZCYXIKTG9hZGluZwpOYXZMaW5rCk5vdEZvdW5kClRoZW1lSG9vawpUaGVtZU1lbnUKSGVhZGxlc3NVSQpSZWFjdEJpbmRpbmcKRXJyb3JCb3VuZGFyeQpTdXNwZW5zaW9uTG9hZGVyClRoZW1lU3dpdGNoUHJvdmlkZXIKLi9zcmMJLi9zcmMvcGFnZXMJLi9zcmMvY29tcG9uZW50cwkuL3NyYy9ob29rcwkuL3NyYy9iaW5kaW5ncwkuL3NyYy9wcm92aWRlcnMJCjEBAwUDAQUFBQMHBQkJBQULCjAK))
 (rule (write-file .sourcedirs.json "{ \"dirs\" : [ \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react/./src/legacy\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/pages\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/bindings\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/hooks\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/components\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/./src/providers\" ] , \"pkgs\" : [ [ \"@rescript/react\" , \"/Users/jazz/ghq/github.com/nyinyithann/melange-template/node_modules/@rescript/react\" ] ] , \"generated\" : [] }")) 
 )
 
@@ -775,6 +800,8 @@
  (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/NavLink.cmj -o src/components/NavLink.js)
  (run rm -f src/components/ThemeMenu.js)
  (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/ThemeMenu.cmj -o src/components/ThemeMenu.js)
+ (run rm -f src/components/ErrorBoundary.js)
+ (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/ErrorBoundary.cmj -o src/components/ErrorBoundary.js)
  (run rm -f src/components/SuspensionLoader.js)
  (run melc -I ../src/providers -I ../src/components -I ../src/hooks -I ../src/bindings -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -bs-package-name melange-react-template -bs-module-type es6 ../src/components/SuspensionLoader.cmj -o src/components/SuspensionLoader.js)
 (run mkdir -p src/providers)
