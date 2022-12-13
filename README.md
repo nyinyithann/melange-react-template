@@ -8,8 +8,8 @@ Opinionated boilerplate of [Melange](https://github.com/melange-re/melange) + Re
 
 - `git clone https://github.com/nyinyithann/melange-react-template`
 - `cd melange-template`
-- `esy install`
 - `yarn install`
+- `esy`
 - `yarn watch:mel`
 - `yarn start`
 - visit `http://0.0.0.0:8080`

@@ -24,3 +24,5 @@ dune.bsb
 
 .merlin
 dune.mel
+
+esy.lock
